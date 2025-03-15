@@ -67,9 +67,53 @@ FROM walmart
 GROUP BY city, category;
 ```
      - Identifying best-selling product categories.
+```sql
+SELECT
+    category,
+    SUM(total) AS total_revenue,
+    SUM(total * profit_margin) AS profit
+FROM walmart
+GROUP BY category;
+```
      - Sales performance by time, city, and payment method.
+```sql
+SELECT 
+    branch,
+    CASE 
+        WHEN HOUR(time) < 12 THEN 'Morning'
+        WHEN HOUR(time) BETWEEN 12 AND 17 THEN 'Afternoon'
+        ELSE 'Evening'
+    END AS day_time,
+    COUNT(*) AS total_transactions
+FROM walmart
+GROUP BY branch, day_time
+ORDER BY branch, total_transactions DESC;
+```
      - Analyzing peak sales periods and customer buying patterns.
+```sql
+SELECT * 
+FROM (
+    SELECT 
+        branch, 
+        DAYNAME(STR_TO_DATE(date, '%d/%m/%Y')) AS day_name,  -- Fixed date format
+        COUNT(*) AS no_transactions,
+        RANK() OVER(PARTITION BY branch ORDER BY COUNT(*) DESC) AS rank_pos  
+    FROM walmart
+    GROUP BY branch, day_name
+) AS ranked_data  
+WHERE rank_pos = 1;
+```
+
      - Profit margin analysis by branch and category.
+```sql
+SELECT
+    category,
+    SUM(total) AS total_revenue,
+    SUM(total * profit_margin) AS profit
+FROM walmart
+GROUP BY category;
+```
+
    - **Documentation**: Keep clear notes of each query's objective, approach, and results.
 
 ### 10. Project Publishing and Documentation
