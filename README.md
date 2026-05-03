@@ -163,10 +163,12 @@ GROUP BY category;
 
 ## Results and Insights
 
-This section will include your analysis findings:
-- **Sales Insights**: Key categories, branches with highest sales, and preferred payment methods.
-- **Profitability**: Insights into the most profitable product categories and locations.
-- **Customer Behavior**: Trends in ratings, payment preferences, and peak shopping hours.
+## Results and Insights
+
+- Identified top-performing branches contributing highest revenue  
+- Certain product categories showed high sales but lower profit margins  
+- Peak transaction times were observed during afternoon and evening hours  
+- Customer purchase behavior varies across locations and time periods  
 
 ## Future Enhancements
 
